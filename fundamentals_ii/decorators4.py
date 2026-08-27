@@ -10,10 +10,10 @@ def timed(func):
     return wrapper
 
 def logger(func):
-    def wrapper(*args, **kwargs):
+    def wrapper(*args):
         print(f"Calling function {func.__name__}")
         print(f"Provided arguments {args[0]} and {args[1]}")
-        result = func(*args, **kwargs)
+        result = func(*args)
         print(f"Function {func.__name__} returned {result}")
         return result
     return wrapper
