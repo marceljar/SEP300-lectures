@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>User Details</title>
+  <style>
+    table { border-collapse: collapse; 
+            margin: 20px auto; }
+    th, td { border: 1px solid #ccc; 
+             padding: 8px 16px; }
+    th { background: #eee; text-align: left; }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">User Details</h2>
+
+  <table>
+    <tr><th>ID</th><td>{{ user.user_id }}</td></tr>
+    <tr><th>First Name</th><td>{{ user.first_name }}</td></tr>
+    <tr><th>Last Name</th><td>{{ user.last_name }}</td></tr>
+    <tr><th>Balance</th><td>{{ user.balance }}</td></tr>
+  </table>
+</body>
+</html>
