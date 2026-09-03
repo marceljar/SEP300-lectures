@@ -14,7 +14,7 @@ class Cat(Animal):
         print("Meow!")
 
 
-animals = [Dog("Billy"), Cat("Pumpkin"), Animal("Clarabelle")]
+animals = [Dog("Billy"), Cat("Pip"), Animal("Clara")]
 
 for animal in animals:
     print(f"This animal is called {animal.name}.")
