@@ -10,8 +10,8 @@ class TestPricingUnit(unittest.TestCase):
 
     def test_final_price_helper(self):
         #100, 10% discount -> 90, then 13% tax -> 101.7
-        self.assertAlmostEqual(final_price(100.0, 10.0,13.0),\
-                                101.7, places=7)
+        self.assertAlmostEqual(\
+             final_price(100.0, 10.0, 13.0), 101.7, places=7)
 
     def test_discount_then_tax_pipeline(self):
         discounted = apply_discount(100.0, 10.0)
