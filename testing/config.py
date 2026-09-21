@@ -1,0 +1,6 @@
+#Configuration file for constants
+DISCOUNT_THRESHOLD = 10
+HIGH_DISCOUNT = 0.10
+LOW_DISCOUNT = 0.05
+TAX_RATE = 0.13
+SHIPPING_FEE = 15
