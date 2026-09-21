@@ -5,5 +5,5 @@ def is_palindrome_permutation(s: str) -> bool:
     counts = {}
     for c in s.replace(" ", "").lower():
         counts[c] = counts.get(c, 0) + 1
-    odd_counts = sum(1 for v in counts.values() if v % 2 != 0)
+    odd_counts = sum(1 for v in counts.values() if v%2 != 0)
     return odd_counts <= 1
