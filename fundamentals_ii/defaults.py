@@ -7,7 +7,7 @@ print("Only one argument:", power(3))
 print("Both arguments:", power(2, 4))
 
 # using keyword arguments
-print("One keyword argument:", power(base = 3))
-print("Another keyword argument:", power(exponent = 2))
-print("Both keyword arguments:", power(base = 5, exponent = 2))
-print("Arguments swapped:", power(exponent = 2, base = 5))
+print("One keyword arg:", power(base = 3))
+print("Another keyword arg:", power(exponent = 2))
+print("Both keyword args:", power(base = 5, exponent = 2))
+print("Args swapped:", power(exponent = 2, base = 5))
