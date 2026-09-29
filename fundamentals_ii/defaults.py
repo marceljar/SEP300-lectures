@@ -4,7 +4,7 @@ def power(base=2, exponent=3):
 
 print("No arguments:", power()) 
 print("Only one argument:", power(3))
-print("Both arguments:", power(2, 4))
+print("Both arguments:", power(4, 4))
 
 # using keyword arguments
 print("One keyword arg:", power(base = 3))

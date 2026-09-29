@@ -1,5 +1,5 @@
 # this function does not change the original argument
-def add_one(num):
+def add_one(num: int) -> int:
     num += 1
     return num
 
@@ -8,7 +8,7 @@ print("Function returns:", add_one(number))
 print("Number is now:", number)
 
 # this function changes the original argument
-def append_one(list_arg):
+def append_one(list_arg: list) -> list:
     list_arg.append(1)
     return list_arg
 

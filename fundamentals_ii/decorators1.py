@@ -6,6 +6,9 @@ def square(x):
 def add(a, b):
     return a + b
 
+def list_add(my_list):
+    return sum(my_list)
+
 def timed_function(func, *args):
     start = time.time()
     result = func(*args)
@@ -15,3 +18,4 @@ def timed_function(func, *args):
 
 print("Result:", timed_function(square, 10))
 print("Result:", timed_function(add, 3, 4))
+print("Result:", timed_function(list_add, list(range(1,100000))))
