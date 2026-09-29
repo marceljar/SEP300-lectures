@@ -1,36 +1,30 @@
-from abc import ABC, abstractmethod
+class Dog:
+    def speak(self):
+        print("Woof!")
 
-class PaymentMethod(ABC):
-    def __init__(self, amount):
-        self.balance = amount
 
-    @abstractmethod
-    def pay(self, amount):
-        pass   
+class Person:
+    def speak(self):
+        print("Hello!")
 
-class CreditCard(PaymentMethod):
-    def pay(self, amount):
-        self.balance -= amount
-        print(f"Paid ${amount} using credit card.")
 
-class DebitCard(PaymentMethod):
-    def pay(self, amount):
-        self.balance -= amount
-        print(f"Paid ${amount} using debit card.")
+class Alarm:
+    def speak(self):
+        print("Beep! Beep!")
 
-class ETransfer(PaymentMethod):
-    def pay(self, amount):
-        self.balance -= amount
-        print(f"Paid ${amount} using e-transfer.")
 
-def read_balance(method):
-    print(f"Current balance is {method.balance}")
+class Robot:
+    def speak(self):
+        print("Greetings, human.")
 
-payment_methods = [CreditCard(100), DebitCard(100), \
-                   ETransfer(100) ]
 
-for method in payment_methods:
-    method.pay(20)
+objects = [
+    Dog(),
+    Person(),
+    Alarm(),
+    Robot()
+]
 
-for method in payment_methods:
-    read_balance(method)
+
+for obj in objects:
+    obj.speak()
