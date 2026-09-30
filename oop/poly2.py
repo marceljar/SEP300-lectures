@@ -25,16 +25,16 @@ def sum_values(obj):
 
 
 cart = ShoppingCart(
-    "Alice",
-    "Tech Store",
+    "Alice", 
+    "Tech Store", 
     [120.00, 35.50, 80.00]
 )
 
 scores = TestScores(
     "Bob",
-    "Programming Fundamentals",
-    [85, 92, 78, 96]
+    "SEP300",
+    [45, 72, 68, 56]
 )
 
-print("Cart total:", sum_values(cart))
-print("Score total:", sum_values(scores))
+print(f"Cart total: {sum_values(cart)}")
+print(f"Score total: {sum_values(scores)}")

@@ -21,7 +21,7 @@ class Pet(Animal):
     def speak(self):
         print("This pet makes a sound.")
 
-class Dog(Mammal, Pet):
+class Dog(Pet, Mammal):
     def __init__(self):
         print("Dog constructor called")
         super().__init__()
