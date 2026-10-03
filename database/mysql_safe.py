@@ -1,7 +1,7 @@
 import mysql.connector
 
 # note that different users might have different level of access
-# passwords are frequently retrieved fro other files
+# passwords are frequently retrieved from other files
 conn = mysql.connector.connect(
     host="localhost",
     user="marcel",
