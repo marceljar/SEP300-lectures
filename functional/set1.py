@@ -1,4 +1,4 @@
 fruits = {"apple", "banana", "cherry", "grape"}
 
-uppercased = {w.upper() for w in fruits}
+uppercased = {fruit.upper() for fruit in fruits}
 print(uppercased)
