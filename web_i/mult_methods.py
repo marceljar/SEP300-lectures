@@ -15,6 +15,16 @@ def get_students():
     return jsonify(students)
 
 
+#@app.route("/students/<int:id>", methods=["GET"])
+@app.get("/students/<int:id>")
+def get_student(id):
+    for student in students:
+        if student["id"] == id:
+            return jsonify(student)
+
+    return jsonify({"error": "Student not found"}), 404
+
+
 #@app.route("/students", methods=["POST"])
 @app.post("/students")
 def add_student():
