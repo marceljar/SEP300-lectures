@@ -17,6 +17,3 @@ class TestPricingUnit(unittest.TestCase):
         discounted = apply_discount(100.0, 10.0)
         total = add_tax(discounted, 13.0)
         self.assertAlmostEqual(total, 101.7, places=7)
-
-if __name__ == "__main__":
-    unittest.main()
