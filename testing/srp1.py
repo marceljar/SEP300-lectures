@@ -7,8 +7,8 @@ groceries = {
     "apples": (1.29, 10), 
 }
 
-def checkout(cart, coupon):
-    
+
+def checkout(cart, coupon):    
     total = 0.0
     for name, (unit_price, qty) in cart.items():
         line = unit_price * qty
