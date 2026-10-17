@@ -8,7 +8,7 @@
             "module": "flask",
             "cwd": "${workspaceFolder}",
             "env": {
-                "FLASK_APP": "web_i/mult_methods.py",
+                "FLASK_APP": "web_ii/app/app.py",
                 "FLASK_DEBUG": "0"
             },
             "args": [

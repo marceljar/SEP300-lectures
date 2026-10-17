@@ -26,7 +26,8 @@ students = [
 
 
 def login_required(func):
-    @wraps(func) # presevents Flask from losing the function name
+    # presevents Flask from losing the function name
+    @wraps(func)
     def wrapper(*args, **kwargs):
         if "faculty" not in session:
             return redirect(url_for("login"))
@@ -42,7 +43,6 @@ def login():
         username = request.form.get("username", "")
         password = request.form.get("password", "")
 
-        # Check username and password
         if faculty.get(username) == password:
             session.clear()
             session["faculty"] = username
@@ -67,14 +67,19 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.get("/students/<int:id>")
+@app.get("/")
 @login_required
-def get_student(id):
-    for student in students:
-        if student["id"] == id:
-            return jsonify(student)
+def index():
+    return redirect(url_for("students_page"))
 
-    return jsonify({"error": "Student not found"}), 404
+
+@app.get("/students/view")
+@login_required
+def students_page():
+    return render_template(
+        "students.html",
+        students=students
+    )
 
 
 @app.post("/students")
@@ -96,10 +101,23 @@ def add_student():
     return jsonify(student), 201
 
 
+@app.get("/students/<int:id>/edit")
+@login_required
+def edit_student_page(id):
+    for student in students:
+        if student["id"] == id:
+            return render_template(
+                "edit_student.html",
+                student=student
+            )
+
+    return "Student not found", 404
+
+
 @app.put("/students/<int:id>")
 @login_required
 def update_student(id):
-    updated_data = request.get_json(silent=True)
+    updated_data = request.get_json()
 
     for student in students:
         if student["id"] == id:
@@ -126,21 +144,6 @@ def delete_student(id):
     return jsonify({"error": "Student not found"}), 404
 
 
-@app.get("/")
-@login_required
-def index():
-    return redirect(url_for("students_page"))
-
-
-@app.get("/students/view")
-@login_required
-def students_page():
-    return render_template(
-        "students.html",
-        students=students
-    )
-
-
 @app.route("/students/add", methods=["GET", "POST"])
 @login_required
 def add_student_page():
@@ -157,14 +160,11 @@ def add_student_page():
     return render_template("add_student.html")
 
 
-@app.get("/students/<int:id>/edit")
-@login_required
-def edit_student_page(id):
-    for student in students:
-        if student["id"] == id:
-            return render_template(
-                "edit_student.html",
-                student=student
-            )
+# @app.get("/students/<int:id>")
+# @login_required
+# def get_student(id):
+#     for student in students:
+#         if student["id"] == id:
+#             return jsonify(student)
 
-    return "Student not found", 404
+#     return jsonify({"error": "Student not found"}), 404

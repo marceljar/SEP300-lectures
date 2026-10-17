@@ -9,14 +9,14 @@ students = [
     {"id": 102, "name": "Bob", "gpa": 3.6}
 ]
 
+@app.get("/")
+def index():
+    return redirect(url_for("students_page"))
 
-@app.get("/students/<int:id>")
-def get_student(id):
-    for student in students:
-        if student["id"] == id:
-            return jsonify(student)
 
-    return jsonify({"error": "Student not found"}), 404
+@app.get("/students/view")
+def students_page():
+    return render_template("students.html", students=students)
 
 
 @app.post("/students")
@@ -35,6 +35,17 @@ def add_student():
     
     students.append(student)
     return jsonify(student), 201
+
+
+@app.get("/students/<int:id>/edit")
+def edit_student_page(id):
+    for student in students:
+        if student["id"] == id:
+            return render_template(
+                "edit_student.html", student=student
+            )
+
+    return "Student not found", 404
 
 
 @app.put("/students/<int:id>")
@@ -65,16 +76,6 @@ def delete_student(id):
     return jsonify({"error": "Student not found"}), 404
 
 
-@app.get("/")
-def index():
-    return redirect(url_for("students_page"))
-
-
-@app.get("/students/view")
-def students_page():
-    return render_template("students.html", students=students)
-
-
 @app.route("/students/add", methods=["GET", "POST"])
 def add_student_page():
     if request.method == "POST":
@@ -88,15 +89,4 @@ def add_student_page():
         return redirect(url_for("students_page"))
 
     return render_template("add_student.html")
-
-
-@app.get("/students/<int:id>/edit")
-def edit_student_page(id):
-    for student in students:
-        if student["id"] == id:
-            return render_template(
-                "edit_student.html", student=student
-            )
-
-    return "Student not found", 404
 
