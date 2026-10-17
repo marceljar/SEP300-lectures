@@ -1,6 +1,6 @@
-
-from flask import Flask, request, jsonify, \
+from flask import ( Flask, request, jsonify, 
         render_template, redirect, url_for
+)
 
 app = Flask(__name__)
 
@@ -8,11 +8,6 @@ students = [
     {"id": 101, "name": "Alice", "gpa": 3.8},
     {"id": 102, "name": "Bob", "gpa": 3.6}
 ]
-
-
-@app.get("/students")
-def get_students():
-    return jsonify(students)
 
 
 @app.get("/students/<int:id>")
@@ -26,19 +21,18 @@ def get_student(id):
 
 @app.post("/students")
 def add_student():
-    new_student = request.get_json()
+    new_student = request.get_json(silent=True)
+    
+    student_id = int(new_student["id"])
+    name = str(new_student["name"]).strip()
+    gpa = float(new_student["gpa"])
 
-    if not isinstance(new_student, dict):
-        return jsonify({"error": "Expected a JSON object"}), 400
-
-    try:
-        student_id = int(new_student["id"])
-        name = str(new_student["name"]).strip()
-        gpa = float(new_student["gpa"])
-    except (KeyError, ValueError, TypeError):
-        return jsonify({"error": "Invalid student data"}), 400
-
-    student = {"id": student_id, "name": name, "gpa": gpa}
+    student = {
+        "id": student_id,
+        "name": name,
+        "gpa": gpa
+    }
+    
     students.append(student)
     return jsonify(student), 201
 
@@ -49,22 +43,14 @@ def update_student(id):
 
     for student in students:
         if student["id"] == id:
-            try:
-                changes = {}
-
-                if "name" in updated_data:
+                    changes = {}
                     name = str(updated_data["name"]).strip()
                     changes["name"] = name
-
-                if "gpa" in updated_data:
                     gpa = float(updated_data["gpa"])
                     changes["gpa"] = gpa
-
-            except (ValueError, TypeError):
-                return jsonify({"error": "Invalid student data"}), 400
-
-            student.update(changes)
-            return jsonify(student)
+        
+                    student.update(changes)
+                    return jsonify(student)
 
     return jsonify({"error": "Student not found"}), 404
 
@@ -108,7 +94,9 @@ def add_student_page():
 def edit_student_page(id):
     for student in students:
         if student["id"] == id:
-            return render_template("edit_student.html", student=student)
+            return render_template(
+                "edit_student.html", student=student
+            )
 
     return "Student not found", 404
 

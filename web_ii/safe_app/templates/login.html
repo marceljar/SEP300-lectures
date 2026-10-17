@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+
+{% block title %}Faculty Login{% endblock %}
+
+{% block content %}
+
+<h1>Faculty Login</h1>
+
+<p>Please log in to manage student records.</p>
+
+{% if error %}
+    <p class="error">{{ error }}</p>
+{% endif %}
+
+<form action="{{ url_for('login') }}" method="POST">
+
+    <label for="username">Username:</label>
+    <input type="text"
+           id="username"
+           name="username"
+           required>
+
+    <label for="password">Password:</label>
+    <input type="password"
+           id="password"
+           name="password"
+           required>
+
+    <button type="submit">Login</button>
+
+</form>
+
+{% endblock %}
